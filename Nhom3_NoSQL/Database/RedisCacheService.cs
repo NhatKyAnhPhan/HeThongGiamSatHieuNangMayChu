@@ -19,6 +19,8 @@ namespace Nhom3_NoSQL.Database
             _db = _redis.GetDatabase();
         }
 
+        public bool IsConnected => _redis.IsConnected;
+
         public Task SetLatestMetricAsync(string serverId, MetricSnapshot snapshot)
         {
             var json = JsonSerializer.Serialize(snapshot);

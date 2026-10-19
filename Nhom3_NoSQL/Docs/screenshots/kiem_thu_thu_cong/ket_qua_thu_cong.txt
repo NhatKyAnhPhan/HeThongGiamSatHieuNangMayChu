@@ -1,0 +1,6 @@
+TC-MAN-07  PASS  mở hộp thoại=True, IP sai báo 'Địa chỉ IP không hợp lệ', thêm=True, sửa=True, xóa=True, Event Log HOST=9 dòng
+TC-MAN-08  PASS  1h: 102 điểm, 1 giờ, định dạng HH:mm; 24h: 113 điểm, 23.8 giờ, định dạng HH:mm; 7d: 121 điểm, 166.8 giờ, định dạng dd/MM HH:mm
+TC-MAN-09  PASS  backup-hn-03 Disk: True → False → True (đã trả về như cũ), thẻ 'Quy tắc đang bật' lúc bật = 7 / 8
+TC-MAN-10  PASS  mở hộp thoại=True, báo 'Ngưỡng Critical phải ≥ ngưỡng Warning', số quy tắc 8 → 8
+TC-MAN-11  PASS  biểu đồ rộng 696px (thường) → 1020px (phóng to), không lỗi khi thu nhỏ/khôi phục
+TC-MAN-12  PASS  form đóng=True, LoggedOut=True, token đã xóa=True

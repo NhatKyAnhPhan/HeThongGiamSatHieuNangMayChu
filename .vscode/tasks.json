@@ -1,0 +1,22 @@
+{
+  // Ctrl+Shift+B: build toàn bộ solution (app + test)
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["build", "${workspaceFolder}/Nhom3_NoSQL.sln", "-nologo", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "chụp ảnh giao diện (Docs/screenshots)",
+      "type": "process",
+      "command": "${workspaceFolder}/Nhom3_NoSQL/bin/Debug/net472/Nhom3_NoSQL.exe",
+      "args": ["--screenshots", "${workspaceFolder}/Nhom3_NoSQL/Docs/screenshots"],
+      "dependsOn": "build",
+      "problemMatcher": []
+    }
+  ]
+}

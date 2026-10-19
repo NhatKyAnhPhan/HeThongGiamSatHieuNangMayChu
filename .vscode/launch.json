@@ -1,0 +1,55 @@
+{
+  // Chọn cấu hình ở tab Run and Debug (Ctrl+Shift+D) rồi nhấn F5
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "1. ServerPulse (giao diện)",
+      "type": "clr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Nhom3_NoSQL/bin/Debug/net472/Nhom3_NoSQL.exe",
+      "cwd": "${workspaceFolder}/Nhom3_NoSQL/bin/Debug/net472",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "2. ServerPulse --headless (chỉ API, không giao diện)",
+      "type": "clr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Nhom3_NoSQL/bin/Debug/net472/Nhom3_NoSQL.exe",
+      "args": ["--headless"],
+      "cwd": "${workspaceFolder}/Nhom3_NoSQL/bin/Debug/net472",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "3. Kiểm thử tự động (cần app đang chạy)",
+      "type": "clr",
+      "request": "launch",
+      "program": "${workspaceFolder}/Nhom3_NoSQL.Tests/bin/Debug/net472/Nhom3_NoSQL.Tests.exe",
+      "cwd": "${workspaceFolder}/Nhom3_NoSQL.Tests",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+    ,
+    {
+      "name": "5. Kiểm thử thủ công tự động (chuột/bàn phím thật, cần app đang chạy, không dùng chuột khi chạy)",
+      "type": "clr",
+      "request": "launch",
+      "program": "${workspaceFolder}/Nhom3_NoSQL.Tests/bin/Debug/net472/Nhom3_NoSQL.Tests.exe",
+      "args": ["--thu-cong"],
+      "cwd": "${workspaceFolder}/Nhom3_NoSQL.Tests",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+  ],
+  "compounds": [
+    {
+      "name": "4. Chạy app + kiểm thử cùng lúc",
+      "configurations": ["2. ServerPulse --headless (chỉ API, không giao diện)", "3. Kiểm thử tự động (cần app đang chạy)"],
+      "preLaunchTask": "build",
+      "stopAll": true
+    }
+  ]
+}

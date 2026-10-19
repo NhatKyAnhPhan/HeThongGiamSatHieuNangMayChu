@@ -1,0 +1,60 @@
+﻿Kết quả kiểm thử ServerPulse – 15/10/2026 08:56:55 – API http://localhost:5080
+
+== Đăng nhập / phân quyền (API): 10/10 PASS
+TC-AUTH-01       PASS  Đăng nhập đúng tài khoản Admin trả về token + role 
+TC-AUTH-02       PASS  Sai mật khẩu -> 401 
+TC-AUTH-03       PASS  Email không tồn tại -> 401, cùng thông báo (không lộ tài khoản) 
+TC-AUTH-04       PASS  Gọi API không có token -> 401 
+TC-AUTH-05       PASS  Token giả -> 401 
+TC-AUTH-06       PASS  Viewer xem được danh sách host 
+TC-AUTH-07       PASS  Viewer không được thêm host -> 403 
+TC-AUTH-08       PASS  Viewer không được sửa ngưỡng -> 403 
+TC-AUTH-09       PASS  auth/me trả về thông tin phiên 
+TC-AUTH-10       PASS  Đăng xuất làm token hết hiệu lực 
+
+== API: 13/13 PASS
+TC-API-01        PASS  GET /hosts trả danh sách có status + latest metric 
+TC-API-02        PASS  Lọc host theo trạng thái OFFLINE 
+TC-API-03        PASS  Tìm host theo từ khóa 'db-prod' 
+TC-API-04        PASS  GET /hosts/{id} chi tiết host 
+TC-API-05        PASS  ID sai định dạng -> 400; ID không tồn tại -> 404 
+TC-API-06        PASS  Thêm / chống trùng / sửa host (Admin) 
+TC-API-07        PASS  Thêm host thiếu tên / IP sai -> 400 
+TC-API-08        PASS  POST /metrics/collector nhận dữ liệu Agent (không cần token) 
+TC-API-09        PASS  Collector: Host ID không tồn tại -> 404, giá trị % > 100 -> 400 
+TC-API-10        PASS  GET /metrics/history/{id} 1h/6h/24h/7d có points + summary 
+TC-API-11        PASS  GET /overview trả thống kê + series 6 giờ (Aggregation) 
+TC-API-12        PASS  GET /events tìm kiếm Event Log theo từ khóa và loại 
+TC-API-13        PASS  Xóa host test: host biến mất, sự cố của host được đóng 
+
+== Alert (API): 6/6 PASS
+TC-ALERT-01      PASS  GET /alerts trả items + stats MTTA/MTTR 
+TC-ALERT-02      PASS  Lọc alert theo severity=Critical, status=RESOLVED 
+TC-ALERT-03      PASS  Alert Engine tự tạo cảnh báo khi Agent gửi CPU vượt ngưỡng, không tạo trùng 
+TC-ALERT-04      PASS  Viewer không được Acknowledge -> 403 
+TC-ALERT-05      PASS  Quy trình OPENING -> ACKNOWLEDGED -> RESOLVED 
+TC-ALERT-06      PASS  Ngưỡng không hợp lệ (critical < warning, % > 100) -> 400 
+
+== Logic giao diện: 9/9 PASS
+TC-UI-LOGIN-01   PASS  Form đăng nhập: email sai định dạng 
+TC-UI-LOGIN-02   PASS  Form đăng nhập: bỏ trống mật khẩu 
+TC-UI-LOGIN-03   PASS  Form đăng nhập: dữ liệu hợp lệ không báo lỗi 
+TC-UI-HOST-01    PASS  Form máy chủ: thiếu hostname / IP sai 
+TC-UI-RULE-01    PASS  Form ngưỡng: critical < warning, % > 100, ngưỡng ≤ 0 
+TC-UI-FMT-01     PASS  Định dạng hiển thị: %, Mbps/Gbps, thời lượng, 'x giây trước' 
+TC-UI-FMT-02     PASS  Màu theo trạng thái và theo ngưỡng 
+TC-UI-FONT-01    PASS  Vẽ nhãn trạng thái / thanh tài nguyên không làm hỏng font dùng chung 
+TC-UI-CSV-01     PASS  Xuất CSV: tiêu đề, số dòng, escape dấu ngoặc kép 
+
+== Giao diện WinForms: 9/9 PASS
+TC-UI-LOGIN-04   PASS  Màn hình đăng nhập: sai mật khẩu hiện thông báo lỗi 
+TC-UI-LOGIN-05   PASS  Màn hình đăng nhập: đúng tài khoản thì đóng form với OK 
+TC-UI-DASH-01    PASS  Tổng quan: thẻ thống kê khớp API, biểu đồ có 2 series 
+TC-UI-DASH-02    PASS  Máy chủ: bảng hiển thị 9 dòng/trang, lọc OFFLINE đúng 
+TC-UI-CHART-01   PASS  Chi tiết host: 4 biểu đồ có dữ liệu, trục % tối đa 100 
+TC-UI-ALERT-01   PASS  Sự cố: danh sách khớp API, Viewer bị khóa nút Acknowledge/Resolve 
+TC-UI-ROLE-01    PASS  Viewer: không có nút Thêm máy chủ / Tạo quy tắc 
+TC-UI-NAV-01     PASS  Chuyển qua tất cả các trang không lỗi 
+TC-UI-ALERT-02   PASS  Sự cố: bấm Acknowledge rồi Resolve trên giao diện, trạng thái lưu vào DB 
+
+Tổng: 47 | PASS: 47 | FAIL/ERROR: 0
